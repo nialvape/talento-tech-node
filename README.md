@@ -46,4 +46,19 @@ Las rutas protegidas requieren el header `Authorization: Bearer <token>`.
 
 ## Despliegue
 
-El proyecto se despliega en Vercel usando `vercel.json`. Las variables de `.env.example` se cargan en *Settings > Environment Variables* del proyecto en Vercel.
+El proyecto se despliega en Vercel usando `vercel.json`. Las variables de `.env.example` se cargan en *Settings > Environment Variables* del proyecto en Vercel. Cada push a `master` genera un nuevo despliegue a producción.
+
+URL de producción: https://talento-tech-node.vercel.app
+
+Ejemplo de uso:
+
+```bash
+# 1. Obtener el token
+curl -X POST https://talento-tech-node.vercel.app/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"<email>","password":"<password>"}'
+
+# 2. Consultar los productos con el token devuelto
+curl https://talento-tech-node.vercel.app/api/products \
+  -H "Authorization: Bearer <token>"
+```
